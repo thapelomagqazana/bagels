@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.bagelsgame.BagelsGame;
 import org.example.numbergenerator.NumberGenerator;
 import org.example.userinput.UserInput;
 import org.example.validator.Validator;
@@ -12,25 +13,18 @@ import java.util.List;
  * This version of this game was inspired by 'Invent Your Own Computer Games with Python'
  */
 public class Main {
-    private static boolean isPlaying = true;
     private static final int MAX_GUESSES = 10;
     private static int guessesLeft = 10;
 
     public static void main(String[] args) {
+        // The number of guesses remaining for the player.
         List<Integer> secretCode = NumberGenerator.generateSecretCode();
 
-        while (guessesLeft > 0){
-            int chances = MAX_GUESSES - (guessesLeft - 1);
-            String input = UserInput.getUserInput(chances);
+        // Convert the secret code to a string for easier comparison with user input.
+        String stringCode = NumberGenerator.listToString(secretCode);
 
-            if (!Validator.isUserInputValid(input)){
-                System.out.println("Invalid input");
-                continue;
-            }
-
-
-            guessesLeft--;
-        }
-        System.out.println(secretCode);
+        // Main game loop
+        BagelsGame.mainGameLoop(stringCode, MAX_GUESSES, guessesLeft);
+        System.out.println("The result is: "+stringCode);
     }
 }
