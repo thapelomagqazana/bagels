@@ -8,7 +8,7 @@ public class UserInput {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Guess #"+chances+":");
         System.out.print("> ");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().trim();
 
         return input;
 

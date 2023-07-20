@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.numbergenerator.NumberGenerator;
 import org.example.userinput.UserInput;
+import org.example.validator.Validator;
 
 import java.util.List;
 
@@ -21,6 +22,12 @@ public class Main {
         while (guessesLeft > 0){
             int chances = MAX_GUESSES - (guessesLeft - 1);
             String input = UserInput.getUserInput(chances);
+
+            if (!Validator.isUserInputValid(input)){
+                System.out.println("Invalid input");
+                continue;
+            }
+
 
             guessesLeft--;
         }
