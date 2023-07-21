@@ -10,7 +10,7 @@ import java.util.List;
 public class NumberGeneratorTest {
     @Test
     void testTheCodeIsInRange(){
-        List<Integer> secretCode = NumberGenerator.generateSecretCode();
+        List<Integer> secretCode = NumberGenerator.generateSecretCode(3);
 
         for (int num: secretCode){
             assertTrue(num >= 0 && num <=9);
@@ -20,7 +20,7 @@ public class NumberGeneratorTest {
 
     @Test
     void testTheLengthOfCodeAndUniqueness(){
-        List<Integer> secretCode = NumberGenerator.generateSecretCode();
+        List<Integer> secretCode = NumberGenerator.generateSecretCode(3);
 
         assertEquals(3, secretCode.size());
 

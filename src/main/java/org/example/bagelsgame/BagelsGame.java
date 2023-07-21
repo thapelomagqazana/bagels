@@ -26,7 +26,7 @@ public class BagelsGame {
     }
 
     // Main game loop: Allow the player to make guesses until they run out of guesses or win.
-    public static void mainGameLoop(String code, int MaxGuesses, int remainingGuesses){
+    public static void mainGameLoop(String code, int MaxGuesses, int remainingGuesses, int numDigits){
 
         while (remainingGuesses > 0){
             // Calculate the number of chances (guesses made) based on the remaining guesses.
@@ -36,7 +36,7 @@ public class BagelsGame {
             String input = UserInput.getUserInput(chances);
 
             // Validate the user input to ensure it is a valid guess.
-            if (!Validator.isUserInputValid(input)){
+            if (!Validator.isUserInputValid(input, numDigits)){
                 System.out.println("Invalid input");
                 continue; // Restart the loop to get a new valid input.
             }

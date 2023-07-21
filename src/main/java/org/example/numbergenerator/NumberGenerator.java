@@ -8,16 +8,16 @@ import java.util.Random;
  * NumberGenerator class provides methods for generating a secret code and converting a list of integers to a string.
  */
 public class NumberGenerator {
-    private static final int NUM_DIGITS = 3;
+
     private static Random random = new Random();
 
     /**
      * Generate a secret code as a list of integers.
      * @return A list of integers representing the secret code.
      */
-    public static List<Integer> generateSecretCode(){
+    public static List<Integer> generateSecretCode(int numDigits){
         List<Integer> secretCode = new ArrayList<>();
-        for (int i = 0; i < NUM_DIGITS; i++){
+        for (int i = 0; i < numDigits; i++){
             int digit;
             digit = random.nextInt(10);
             while (secretCode.contains(digit)){

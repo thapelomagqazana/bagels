@@ -10,8 +10,8 @@ public class Validator {
      * @return true if the user input is valid, false otherwise.
      *
      */
-    public static boolean isUserInputValid(String userInput){
+    public static boolean isUserInputValid(String userInput, int numDigits){
         return !userInput.isBlank() && !userInput.isEmpty() &&
-                userInput.length() == 3 && userInput.matches("\\d+");
+                userInput.length() == numDigits && userInput.matches("\\d+");
     }
 }
