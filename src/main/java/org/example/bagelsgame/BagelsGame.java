@@ -10,7 +10,7 @@ import org.example.validator.Validator;
 public class BagelsGame {
 
     // Calculate the outcome of the guess.
-    private static int[] countOutcome(String userInput, String code){
+    public static int[] countOutcome(String userInput, String code){
         int correct_digit_and_correct_position = 0;
         int correct_digit = 0;
 
