@@ -3,6 +3,11 @@ package org.example.bagelsgame;
 import org.example.userinput.UserInput;
 import org.example.validator.Validator;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 
 /**
  * BagelsGame class provides methods for the main game logic and calculating the outcome of the user's guess.
@@ -10,19 +15,28 @@ import org.example.validator.Validator;
 public class BagelsGame {
 
     // Calculate the outcome of the guess.
-    public static int[] countOutcome(String userInput, String code){
+    public static String countOutcome(String userInput, String code){
         int correct_digit_and_correct_position = 0;
         int correct_digit = 0;
+        List<String> outcome = new ArrayList<>();
 
         for (int i = 0; i < userInput.length();i++){
             if (userInput.charAt(i) == code.charAt(i)){
+                outcome.add("Fermi");
                 correct_digit_and_correct_position++;
             } else if (code.contains(Character.toString(userInput.charAt(i)))) {
-                correct_digit++;
-
+               outcome.add("Pico");
+               correct_digit++;
             }
         }
-        return new int[]{correct_digit_and_correct_position, correct_digit};
+        if (correct_digit_and_correct_position == 0 && correct_digit == 0){
+            outcome.add("Bagels");
+        }
+        Collections.shuffle(outcome);
+
+        String outcomeString = String.join(" ", outcome);
+
+        return outcomeString;
     }
 
     // Main game loop: Allow the player to make guesses until they run out of guesses or win.
@@ -48,10 +62,8 @@ public class BagelsGame {
             }
 
             // Calculate the outcome of the guess and display the clues to the player.
-            int[] outcome = countOutcome(input,code);
-            System.out.println("Correct digit and correct position: "+outcome[0]);
-            System.out.println("Correct digit: "+outcome[1]);
-
+            String feedBack = countOutcome(input,code);
+            System.out.println(feedBack);
             // Decrement the remaining guesses for the player.
             remainingGuesses--;
         }
