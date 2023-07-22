@@ -49,6 +49,11 @@ public class BagelsGUI extends Application {
         Button guessButton = new Button("Guess");
         Button newGameButton = new Button("New Game");
 
+        // Apply CSS to make the buttons black and white text
+        String buttonStyle = "-fx-background-color: black; -fx-text-fill: white;";
+        guessButton.setStyle(buttonStyle);
+        newGameButton.setStyle(buttonStyle);
+
 
         // Add the title label to the main layout
         root.getChildren().addAll(titleLabel, instructionLabel, inputField, guessButton, newGameButton);
