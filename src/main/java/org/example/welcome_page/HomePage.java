@@ -3,9 +3,7 @@ package org.example.welcome_page;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -23,6 +21,7 @@ import java.util.List;
 
 public class HomePage {
     private static Image icon = new Image("C:\\Users\\hifi\\OneDrive\\Desktop\\Java work\\bagels\\src\\main\\resources\\org\\example\\bagels1\\mystery.png");
+
     public static void welcomeScene(Stage stage){
         // Set the game icon
 //        Image icon =
@@ -82,6 +81,10 @@ public class HomePage {
 //            inputField.clear();
         });
 
+        settingsButton.setOnAction(e -> {
+            settingScene(stage);
+        });
+
         // Create the scene with the main layout and set it to the primary stage
         Scene scene = new Scene(root, 400, 400);
         stage.setTitle("Bagels MasterMind");
@@ -92,5 +95,46 @@ public class HomePage {
 
     }
 
+    private static void settingScene(Stage stage){
 
+        stage.getIcons().add(icon);
+
+        VBox root = new VBox();
+        root.setAlignment(Pos.TOP_CENTER);
+        root.setSpacing(20);
+        root.setPadding(new Insets(20));
+
+        BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        root.setBackground(background);
+
+        Label titleLabel = new Label("Bagels Mastermind");
+        titleLabel.setFont(Font.font("Arial", 36));
+
+//        // Create a ToggleGroup for RadioButtons representing difficulty levels
+//        ToggleGroup difficultyGroup = new ToggleGroup();
+//
+//        // Create RadioButtons for each difficulty level
+//        RadioButton easyRadioButton = new RadioButton("Easy");
+//        easyRadioButton.setToggleGroup(difficultyGroup);
+//        easyRadioButton.setSelected(true); // Set the default selection to Easy
+//
+//        RadioButton mediumRadioButton = new RadioButton("Medium");
+//        mediumRadioButton.setToggleGroup(difficultyGroup);
+//
+//        RadioButton hardRadioButton = new RadioButton("Hard");
+//        hardRadioButton.setToggleGroup(difficultyGroup);
+
+        // Create a ComboBox for selecting difficulty levels
+        ComboBox<String> difficultyComboBox = new ComboBox<>();
+        difficultyComboBox.getItems().addAll("Easy", "Medium", "Hard");
+        difficultyComboBox.setValue("Easy");
+
+        root.getChildren().addAll(titleLabel, difficultyComboBox);
+
+        Scene scene = new Scene(root, 400, 400);
+        stage.setScene(scene);
+
+        stage.show();
+    }
 }
