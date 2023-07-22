@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -18,6 +19,10 @@ import javafx.stage.Stage;
 public class BagelsGUI extends Application {
     @Override
     public void start(Stage stage){
+        // Set the game icon
+        Image icon = new Image("C:\\Users\\hifi\\OneDrive\\Desktop\\Java work\\bagels\\src\\main\\resources\\org\\example\\bagels1\\mystery.png");
+        stage.getIcons().add(icon);
+
         // Create the main layout (VBox)
         VBox root = new VBox();
         root.setAlignment(Pos.TOP_CENTER);
