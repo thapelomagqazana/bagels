@@ -15,6 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.example.bagelsgame.BagelsGame;
+import org.example.numbergenerator.NumberGenerator;
+import org.example.validator.Validator;
+
+import java.util.List;
 
 public class BagelsGUI extends Application {
     @Override
@@ -48,6 +53,28 @@ public class BagelsGUI extends Application {
         // Add the title label to the main layout
         root.getChildren().addAll(titleLabel, instructionLabel, inputField, guessButton, newGameButton);
 
+        final int NUM_DIGITS = 3;
+
+        // The number of guesses remaining for the player.
+        List<Integer> secretCode = NumberGenerator.generateSecretCode(NUM_DIGITS);
+
+        // Convert the secret code to a string for easier comparison with user input.
+        String stringCode = NumberGenerator.listToString(secretCode);
+        System.out.println(stringCode);
+
+
+        // Event handling for the "Guess" button
+        guessButton.setOnAction(e -> {
+            String userInput = inputField.getText();
+            if (Validator.isUserInputValid(userInput,NUM_DIGITS)){
+                String feedback = BagelsGame.countOutcome(userInput,stringCode);
+                System.out.println(feedback);
+            }
+            else{
+                System.out.println("Invalid input");
+            }
+            inputField.clear();
+        });
 
         // Create the scene with the main layout and set it to the primary stage
         Scene scene = new Scene(root, 400, 400);
