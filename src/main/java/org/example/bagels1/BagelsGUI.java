@@ -1,11 +1,12 @@
 package org.example.bagels1;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -14,14 +15,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class BagelsGUI extends Application {
     @Override
     public void start(Stage stage){
         // Create the main layout (VBox)
         VBox root = new VBox();
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.TOP_CENTER);
         root.setSpacing(20);
         root.setPadding(new Insets(20));
 
@@ -34,10 +33,16 @@ public class BagelsGUI extends Application {
         Label titleLabel = new Label("Bagels MasterMind");
         titleLabel.setFont(Font.font("Arial", 36));
 
-        // Add the title label to the main layout
-        root.getChildren().add(titleLabel);
+        // Create labels, input fields, and buttons for the game.
+        Label instructionLabel = new Label("Enter your guess (3-digit number):");
+        TextField inputField = new TextField();
+        Button guessButton = new Button("Guess");
+        Button newGameButton = new Button("New Game");
 
-        // Create and set up other components for the game, such as labels, input fields, and buttons.
+
+        // Add the title label to the main layout
+        root.getChildren().addAll(titleLabel, instructionLabel, inputField, guessButton, newGameButton);
+
 
         // Create the scene with the main layout and set it to the primary stage
         Scene scene = new Scene(root, 400, 400);
