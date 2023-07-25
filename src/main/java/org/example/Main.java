@@ -16,7 +16,7 @@ public class Main {
     private static final int NUM_DIGITS = 3;
     private static int guessesLeft = 10;
 
-    private static String welcomeMessage(){
+    public static String welcomeMessage(){
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("\nBagels, by Thapelo Magqazana ,tapsmcgzee8@gmail.com\n"+

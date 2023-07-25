@@ -1,5 +1,6 @@
 package org.example.welcome_page;
 
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,7 +9,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.example.Main;
 import org.example.PlayGame;
 import org.example.bagelsgame.BagelsGame;
 import org.example.numbergenerator.NumberGenerator;
@@ -56,6 +60,7 @@ public class HomePage {
         // Event handling for the "Start" button
         startButton.setOnAction(e -> {
             PlayGame.playGame(stage);
+//            aboutTextScene(stage);
         });
 
         settingsButton.setOnAction(e -> {
@@ -148,5 +153,42 @@ public class HomePage {
         stage.setScene(scene);
 
         stage.show();
+    }
+
+    private static void aboutTextScene(Stage stage){
+
+        stage.getIcons().add(icon);
+
+        stage.setTitle("About");
+
+        VBox root = new VBox();
+        root.setAlignment(Pos.CENTER);
+
+        BackgroundFill backgroundFill = new BackgroundFill(Color.LIGHTGRAY, CornerRadii.EMPTY, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        root.setBackground(background);
+
+        // Create the rolling text
+        Text rollingText = new Text(Main.welcomeMessage());
+        rollingText.setFont(Font.font("Arial", 24));
+        rollingText.setFill(Color.BLACK);
+
+        root.getChildren().add(rollingText);
+
+//        // Create a TranslateTransition to animate the text from top to bottom
+//        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(5), rollingText);
+//        translateTransition.setFromY(-100); // Start the text off the screen above
+//        translateTransition.setToY(500); // End the text off the screen below
+//        translateTransition.setCycleCount(1); // Set the animation to play once
+//        translateTransition.setAutoReverse(false); // Don't reverse the animation
+
+        Scene scene = new Scene(root, 400, 300);
+        stage.setScene(scene);
+        stage.show();
+
+        // Start the rolling text animation
+//        translateTransition.play();
+
+
     }
 }
