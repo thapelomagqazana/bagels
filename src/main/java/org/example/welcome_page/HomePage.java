@@ -5,10 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -21,6 +18,7 @@ import java.util.List;
 
 public class HomePage {
     private static Image icon = new Image("C:\\Users\\hifi\\OneDrive\\Desktop\\Java work\\bagels\\src\\main\\resources\\org\\example\\bagels1\\mystery.png");
+    private static String difficulty;
 
     public static void welcomeScene(Stage stage){
         // Set the game icon
@@ -42,9 +40,7 @@ public class HomePage {
         Label titleLabel = new Label("Bagels MasterMind");
         titleLabel.setFont(Font.font("Arial", 36));
 
-        // Create labels, input fields, and buttons for the game.
-//        Label instructionLabel = new Label("Enter your guess (3-digit number):");
-//        TextField inputField = new TextField();
+        // Create buttons for starting the game and to have access to the settings.
         Button startButton = new Button("Start");
         Button settingsButton = new Button("Setting");
 
@@ -57,28 +53,9 @@ public class HomePage {
         // Add the title label to the main layout
         root.getChildren().addAll(titleLabel, startButton, settingsButton);
 
-//        final int NUM_DIGITS = 3;
-//
-//        // The number of guesses remaining for the player.
-//        List<Integer> secretCode = NumberGenerator.generateSecretCode(NUM_DIGITS);
-//
-//        // Convert the secret code to a string for easier comparison with user input.
-//        String stringCode = NumberGenerator.listToString(secretCode);
-//        System.out.println(stringCode);
-
-
-        // Event handling for the "Guess" button
+        // Event handling for the "Start" button
         startButton.setOnAction(e -> {
             PlayGame.playGame(stage);
-//            String userInput = inputField.getText();
-//            if (Validator.isUserInputValid(userInput,NUM_DIGITS)){
-//                String feedback = BagelsGame.countOutcome(userInput,stringCode);
-//                System.out.println(feedback);
-//            }
-//            else{
-//                System.out.println("Invalid input");
-//            }
-//            inputField.clear();
         });
 
         settingsButton.setOnAction(e -> {
@@ -111,26 +88,61 @@ public class HomePage {
         Label titleLabel = new Label("Bagels Mastermind");
         titleLabel.setFont(Font.font("Arial", 36));
 
-//        // Create a ToggleGroup for RadioButtons representing difficulty levels
-//        ToggleGroup difficultyGroup = new ToggleGroup();
-//
-//        // Create RadioButtons for each difficulty level
-//        RadioButton easyRadioButton = new RadioButton("Easy");
-//        easyRadioButton.setToggleGroup(difficultyGroup);
-//        easyRadioButton.setSelected(true); // Set the default selection to Easy
-//
-//        RadioButton mediumRadioButton = new RadioButton("Medium");
-//        mediumRadioButton.setToggleGroup(difficultyGroup);
-//
-//        RadioButton hardRadioButton = new RadioButton("Hard");
-//        hardRadioButton.setToggleGroup(difficultyGroup);
+        // Create an HBox for the difficulty selection
+        HBox difficultyBox = new HBox();
+        difficultyBox.setAlignment(Pos.CENTER);
+        difficultyBox.setSpacing(10);
+
+
+
+        // Create a Label for the difficulty selection
+        Label difficultyLabel = new Label("Difficulty:");
+        difficultyLabel.setFont(Font.font("Arial", 16));
 
         // Create a ComboBox for selecting difficulty levels
         ComboBox<String> difficultyComboBox = new ComboBox<>();
         difficultyComboBox.getItems().addAll("Easy", "Medium", "Hard");
         difficultyComboBox.setValue("Easy");
 
-        root.getChildren().addAll(titleLabel, difficultyComboBox);
+//        difficulty = difficultyComboBox.getValue();
+//        System.out.println(difficulty);
+
+        difficultyBox.getChildren().addAll(difficultyLabel, difficultyComboBox);
+
+        // Create an HBox for the sound selection
+        HBox soundBox = new HBox();
+        soundBox.setAlignment(Pos.CENTER);
+        soundBox.setSpacing(10);
+
+        Label soundLabel = new Label("Sound:");
+        soundLabel.setFont(Font.font("Arial", 16));
+
+
+        // Create a ToggleGroup for RadioButtons representing sound selection
+        ToggleGroup soundGroup = new ToggleGroup();
+
+        // Create RadioButtons for each difficulty level
+        RadioButton onRadioButton = new RadioButton("On");
+        onRadioButton.setToggleGroup(soundGroup);
+        onRadioButton.setSelected(true); // Set the default selection to Easy
+
+        RadioButton offRadioButton = new RadioButton("Off");
+        offRadioButton.setToggleGroup(soundGroup);
+
+
+        soundBox.getChildren().addAll(soundLabel, onRadioButton, offRadioButton);
+
+        Button homeButton = new Button("Home");
+
+        // Apply CSS to make the buttons black and white text
+        String buttonStyle = "-fx-background-color: black; -fx-text-fill: white;";
+        homeButton.setStyle(buttonStyle);
+
+        homeButton.setOnAction(e -> {
+            welcomeScene(stage);
+        });
+
+        root.getChildren().addAll(titleLabel, difficultyBox, soundBox, homeButton);
 
         Scene scene = new Scene(root, 400, 400);
         stage.setScene(scene);
